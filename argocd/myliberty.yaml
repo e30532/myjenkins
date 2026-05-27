@@ -1,0 +1,15 @@
+apiVersion: apps.openliberty.io/v1beta2
+kind: OpenLibertyApplication
+metadata:
+  name: libertydiag
+spec:
+  applicationImage: >-
+    quay.io/ibm/libertydiag
+  applicationName: libertydiag
+  expose: true
+  pullPolicy: IfNotPresent
+  replicas: 1
+  resources: {}
+  service:
+    port: 9080
+    type: ClusterIP

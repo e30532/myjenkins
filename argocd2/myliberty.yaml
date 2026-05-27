@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: libertydiag2
+  labels:
+    app: libertydiag2
+spec:
+  selector:
+    matchLabels:
+      app: libertydiag2
+  template:
+    metadata:
+      labels:
+        app: libertydiag2
+    spec:
+      containers:
+      - name: libertydiag2
+        image: quay.io/ibm/libertydiag
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 9080
+            scheme: HTTP
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 1
